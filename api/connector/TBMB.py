@@ -13,7 +13,10 @@ def get_movies():
     results = raw_datas["results"]
     movies = []
     for movie in results:
-        movies.append(movie["title"])
+        film = {}
+        film["id"] = movie["id"]
+        film["title"] = movie["title"]
+        movies.append(film)
     return movies
 
 def get_genres():

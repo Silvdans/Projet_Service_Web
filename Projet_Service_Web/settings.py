@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 from pathlib import Path
 import os
 
+from Projet_Service_Web.Projet_Service_Web.dev import API_KEY
+
 os.environ['DJANGO_SETTINGS_MODULE'] = 'Projet_Service_Web.dev'
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -125,3 +127,10 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+HOST = ''
+PORT = 1
+USERNAME = ''
+PASSWORD = ''
+
+API_KEY ="no"

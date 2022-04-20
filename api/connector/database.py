@@ -18,7 +18,14 @@ def get_collection(db,collection_name):
     return db[collection_name]
     
 def set_favorite(data : dict):
-    collection = get_collection(get_db('apidb'),'users')
-
+    collection = get_collection(get_db('apidb'),'Users')
+    
+    user = collection.find_one({"id":data["id"]})
+    favorites = user["favorites"]
+    for item in data["favorites"]:
+        favorites.append(item)
+    result = collection.update_one({"id":data["id"]}, {'$set':{'favorite':favorites}})
+    return result
+    
 
 

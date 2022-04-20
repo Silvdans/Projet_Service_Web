@@ -8,4 +8,5 @@ from . import views
 urlpatterns = [
     path('movies', views.MovieList.as_view()),
     path('genres',views.GenreList.as_view()),
+    path('favorite',views.Favorite.as_view())
 ]

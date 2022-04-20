@@ -31,6 +31,6 @@ class Favorite(APIView):
 
         data = request.data
         set_favorite(data)
-        return Response()
+        return Response(data)
         
 
