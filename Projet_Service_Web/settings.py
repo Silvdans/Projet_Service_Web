@@ -13,8 +13,6 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 from pathlib import Path
 import os
 
-from Projet_Service_Web.Projet_Service_Web.dev import API_KEY
-
 os.environ['DJANGO_SETTINGS_MODULE'] = 'Projet_Service_Web.dev'
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -43,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'api',
     'rest_framework',
+    'drf_spectacular'
 ]
 
 MIDDLEWARE = [
@@ -57,6 +56,9 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'Projet_Service_Web.urls'
 
+REST_FRAMEWORK = {
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+}
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',

@@ -1,10 +1,15 @@
 import json
 import requests
 from django.conf import settings
+def get_movie_api(id : int):
+    """Retrieve wanted movie from TBMB api"""
+    url = f'https://api.themoviedb.org/3/movie/{id}?api_key={settings.API_KEY}'
+    movie = json.loads(requests.get(url).content)
+    return movie
 
 def get_movies():
     """
-    Return a list of films
+    Return a list of films from TBMB api
     """
     url = f'https://api.themoviedb.org/3/discover/movie?api_key={settings.API_KEY}'
     response = requests.get(url)
@@ -13,15 +18,12 @@ def get_movies():
     results = raw_datas["results"]
     movies = []
     for movie in results:
-        film = {}
-        film["id"] = movie["id"]
-        film["title"] = movie["title"]
-        movies.append(film)
+        movies.append(movie)
     return movies
 
 def get_genres():
     """
-    Return a list of genres
+    Return a list of genres from TBMB api
     """
     url = f'https://api.themoviedb.org/3/genre/movie/list?api_key={settings.API_KEY}'
     response = requests.get(url)
