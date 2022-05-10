@@ -8,6 +8,7 @@ class MovieDetailSerializer(serializers.Serializer):
     users_voted = serializers.ListField(child=serializers.IntegerField())
 
     class Meta:
+        pass
 
 class MovieQueryParamsSerializer(serializers.Serializer):
     user_id = serializers.IntegerField()
