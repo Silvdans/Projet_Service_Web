@@ -7,11 +7,19 @@ def get_movie_api(id : int):
     movie = json.loads(requests.get(url).content)
     return movie
 
-def get_movies():
+def get_movies(params : dict):
     """
     Return a list of films from TBMB api
     """
-    url = f'https://api.themoviedb.org/3/discover/movie?api_key={settings.API_KEY}'
+    if('genres' in params):
+        genres = params['genres'].split(',')
+        query_string = ""
+        for genre in genres:
+            query_string += genre + '&'
+        url = f'https://api.themoviedb.org/3/discover/movie?with_genres={query_string}api_key={settings.API_KEY}'
+    else:
+        url = f'https://api.themoviedb.org/3/discover/movie?api_key={settings.API_KEY}'
+            
     response = requests.get(url)
     json_data = response.content
     raw_datas = json.loads(json_data)
@@ -30,8 +38,5 @@ def get_genres():
     json_data = response.content
     raw_datas = json.loads(json_data)
     results = raw_datas["genres"]
-    genres = []
-    for genre in results:
-        genres.append(genre["name"])
-    return genres
+    return results
 

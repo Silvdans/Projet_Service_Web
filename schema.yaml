@@ -1,0 +1,127 @@
+openapi: 3.0.3
+info:
+  title: ''
+  version: 0.0.0
+paths:
+  /api/genres:
+    get:
+      operationId: genres_retrieve
+      description: Retrieve the list of all genres.
+      tags:
+      - genres
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          description: No response body
+  /api/movies/:
+    get:
+      operationId: movies_retrieve
+      description: Return a list of discovered movies.
+      tags:
+      - movies
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          description: No response body
+  /api/movies/{movie_id}:
+    get:
+      operationId: movies_retrieve_2
+      description: Retrieve movie detail
+      parameters:
+      - in: path
+        name: movie_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - movies
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          description: No response body
+    put:
+      operationId: movies_update
+      description: Update movies informations
+      parameters:
+      - in: path
+        name: movie_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - movies
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          description: No response body
+  /api/users:
+    get:
+      operationId: users_retrieve
+      description: Retrieve the list of users
+      tags:
+      - users
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          description: No response body
+  /api/users/{user_id}:
+    get:
+      operationId: users_retrieve_2
+      description: Retrieve the user's details
+      parameters:
+      - in: path
+        name: user_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - users
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          description: No response body
+    put:
+      operationId: users_update
+      description: Update user informations
+      parameters:
+      - in: path
+        name: user_id
+        schema:
+          type: integer
+        required: true
+      tags:
+      - users
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          description: No response body
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: sessionid

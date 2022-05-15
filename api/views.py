@@ -1,21 +1,37 @@
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from api.models import Movie, User
-from api.serializer import MovieDetailSerializer, UserUpdateQueryParamsSerializer, UserUpdateResponseSerializer
+from api.serializer import MovieFromAPI, UserUpdateQueryParamsSerializer, UserUpdateResponseSerializer
 from api.connector.TBMB import get_genres
 from drf_spectacular.utils import extend_schema
 
+from api.swagger_schemas import EXAMPLE_API_MOVIES
+
 class MovieList(APIView):
     """Manage movies list"""
-    ''' @extend_schema(
-        responses={200: MovieDetailSerializer},
-        examples=
-    ) '''
+    @extend_schema(
+        responses={200: MovieFromAPI},
+        examples=EXAMPLE_API_MOVIES
+    )   
     def get(self, request):
         """
         Return a list of discovered movies.
         """
-        data = Movie.get_movies()
+        params = request.query_params
+        data = Movie.get_movies(params)
+        return Response(data)
+
+class MovieListFavorites(APIView):
+    """Manage movies list"""
+    @extend_schema(
+        responses={200: MovieFromAPI},
+        examples=EXAMPLE_API_MOVIES
+    )   
+    def get(self, request, user_id : int):
+        """
+        Return a list of discovered movies.
+        """
+        data = Movie.get_favorites_movies(user_id)
         return Response(data)
 
 class MovieDetail(APIView):
