@@ -1,0 +1,6 @@
+django
+django-rest-framework
+drf_spectacular
+django-cors-headers
+requests
+pymongo
