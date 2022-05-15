@@ -15,3 +15,6 @@ change directory in the projet and then execute the following command to install
 
 You can now run the api by doing the following command: 
 ```python manage.py runserver```
+
+You have also to setup the mongodb database by overriding the values in the settings.py
+You have also to override your api key in the settings.py file
